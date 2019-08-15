@@ -187,7 +187,6 @@ function stop(){
 	echo " stopping $RPG_NAME..."
 	pkill -f "$RPG_NAME"
 	echo "$RPG_NAME is stopped!"
-
 }
 
 
