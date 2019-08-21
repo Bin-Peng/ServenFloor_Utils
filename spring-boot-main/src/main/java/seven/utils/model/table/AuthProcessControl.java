@@ -23,7 +23,7 @@ public class AuthProcessControl extends  AuthProcessControlKey implements Serial
     /**
      * 异常跳转步骤
      */
-    private String pcGotoStep;
+    private Integer pcGotoStep;
     /**
      * 创建时间
      */
@@ -65,12 +65,12 @@ public class AuthProcessControl extends  AuthProcessControlKey implements Serial
         this.pcErrorProcessType = pcErrorProcessType;
     }
 
-    public String getPcGotoStep() {
-        return pcGotoStep;
+    public void setPcGotoStep(Integer pcGotoStep) {
+        this.pcGotoStep = pcGotoStep;
     }
 
-    public void setPcGotoStep(String pcGotoStep) {
-        this.pcGotoStep = pcGotoStep;
+    public Integer getPcGotoStep() {
+        return pcGotoStep;
     }
 
     public String getPcCreateTime() {
