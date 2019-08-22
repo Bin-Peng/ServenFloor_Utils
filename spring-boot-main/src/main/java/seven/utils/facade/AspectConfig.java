@@ -2,6 +2,7 @@ package seven.utils.facade;
 
 import com.google.common.collect.Maps;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
@@ -41,6 +42,7 @@ public class AspectConfig {
      * @param request
      * @return
      */
+    @Around("onlineFacadePointcut(request)")
     public Map<String, Object> onlineFacadeAroundProcessing(ProceedingJoinPoint proceedingJoinPoint,
                                                                     Map<String, Object> request){
 

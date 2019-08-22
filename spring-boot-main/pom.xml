@@ -99,10 +99,6 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-ma</artifactId>
-            </plugin>
 
         </plugins>
     </build>
