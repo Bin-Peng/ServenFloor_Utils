@@ -29,9 +29,8 @@ public class RunContext {
      * 初始化上下文
      *
      * @param request
-     * @param mainCustomerId
      */
-    public static void initContext(Map<String, Object> request, String mainCustomerId, boolean virtualCardFlag) {
+    public static void initContext(Map<String, Object> request) {
         Assert.notEmpty(request, "request can not be empty");
         DataArea dataArea = new DataArea();
         //将request放入dataArea中输入区

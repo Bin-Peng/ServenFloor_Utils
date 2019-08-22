@@ -43,7 +43,7 @@ public class OnlineFacade {
     private AuthTrxnLogService authTrxnLogService;
 
     @Transactional(rollbackFor = Exception.class)
-    public Map<String, Object> process(Map<String, Object> request) {
+    public Map<String, Object> process(Map<String, Object> request){
         //根据交易码，获取授权检查组件，并按照顺序执行
         String authTrxnCode = String.valueOf(request.get(AuthRequetHeader.AUTH_TRXN_CODE));
         List<AuthProcessControl> authProcessControlList = authParaService.queryAuthProcessControlList(authTrxnCode);
@@ -67,7 +67,6 @@ public class OnlineFacade {
                 //统计组件耗时
                 authProcessLogs.add(authProcessControl.getPcComponentBean() + ":" + (System.currentTimeMillis() - start) + "ms");
             } catch (Exception e) {
-
                 //统计组件耗时
                 authProcessLogs.add(authProcessControl.getPcComponentBean() + ":" + (System.currentTimeMillis() - start) + "ms");
                 //授权处理组件异常处理类型
@@ -78,7 +77,6 @@ public class OnlineFacade {
                         //交易失败，处理失败，抛出异常
                         handleException(e);
                         //打印各组件耗时
-
                         throw e;
                     case CONTINUE:
                         //do nothing
