@@ -1,4 +1,4 @@
-package seven.utils.service;
+package seven.utils.service.api;
 
 import seven.utils.model.table.AuthProcessControl;
 

@@ -1,4 +1,4 @@
-package seven.utils.service;
+package seven.utils.service.api;
 
 /**
  * 响应码映射表
