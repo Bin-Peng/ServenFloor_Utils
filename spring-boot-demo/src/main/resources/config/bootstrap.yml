@@ -1,0 +1,22 @@
+seven:
+  utils:
+    client:
+      host: 127.0.0.1
+      port: 8080
+    sevenServer:
+      host: 127.0.0.1
+      port: 8080
+    topic:
+      sema:
+        req: topic_req
+        res: topic_res
+    clientList:
+      - config-name: pay-tcp-01
+        host: www.com
+        port: 8081
+      - config-name: pay-tcp-02
+        host: www.com2
+        port: 8082
+      - config-name: pay-tcp-03
+        host: www.com2
+        port: 8082
