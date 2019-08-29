@@ -33,7 +33,7 @@ public class AspectConfig {
      * @param request
      */
     @Pointcut("execution(public * seven.utils.facade.OnlineFacade.process(..)) && args(request) ")
-    public void onlineFacadePointcut(Map<String, Object> request) {
+    private void onlineFacadePointcut(Map<String, Object> request) {
     }
 
     /**

@@ -19,8 +19,8 @@ import seven.utils.model.table.AuthProcessControl;
 import seven.utils.model.table.AuthTrxnLog;
 import seven.utils.service.api.AuthParaService;
 import seven.utils.service.api.AuthRespCodeMappingService;
-import seven.utils.service.api.AuthTrxnLogService;
 import seven.utils.service.api.AuthService;
+import seven.utils.service.api.AuthTrxnLogService;
 
 import java.util.List;
 import java.util.Map;
@@ -43,7 +43,7 @@ public class OnlineFacade {
     private AuthTrxnLogService authTrxnLogService;
 
     @Transactional(rollbackFor = Exception.class)
-    public Map<String, Object> process(Map<String, Object> request) throws Exception{
+    public Map<String, Object> process(Map<String, Object> request) throws Throwable{
         //根据交易码，获取授权检查组件，并按照顺序执行
         String authTrxnCode = String.valueOf(request.get(AuthRequetHeader.AUTH_TRXN_CODE));
         List<AuthProcessControl> authProcessControlList = authParaService.queryAuthProcessControlList(authTrxnCode);
