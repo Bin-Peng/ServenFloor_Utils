@@ -2,8 +2,8 @@ package seven.utils.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import seven.utils.dao.AuthProcessControlMapper;
-import seven.utils.model.table.AuthProcessControl;
+import org.springframework.stereotype.Component;
+import seven.utils.dao.AuthProcessControlMapperBak;
 import seven.utils.service.api.AuthParaService;
 
 import java.util.List;
@@ -11,10 +11,11 @@ import java.util.List;
 /**
  * Created by moche_000 on 2019/8/23.
  */
+@Component
 public class AuthParaServiceImpl implements AuthParaService{
 
     @Autowired
-    private AuthProcessControlMapper authProcessControlMapper;
+    private AuthProcessControlMapperBak authProcessControlMapperBak;
 
 
     /**
@@ -25,6 +26,6 @@ public class AuthParaServiceImpl implements AuthParaService{
     @Override
     @Cacheable(value = "authProcessControlCache")
     public List<AuthProcessControl> queryAuthProcessControlList(String authTrxnCode) {
-        return authProcessControlMapper.selectControlListAsc(authTrxnCode);
+        return authProcessControlMapperBak.selectControlListAsc(authTrxnCode);
     }
 }

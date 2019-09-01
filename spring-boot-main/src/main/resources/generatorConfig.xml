@@ -48,9 +48,9 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 表名对应生成的实体 -->
-        <table tableName="ecjtu_tab_user" domainObjectName="User" />
-        <!-- enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="auth_process_control" domainObjectName="AuthProcessControl"
+         enableCountByExample="false" enableUpdateByExample="false"
         enableDeleteByExample="false" enableSelectByExample="false"
-        selectByExampleQueryId="false">  指定是否生成操作数据库对应的方法 -->
+        selectByExampleQueryId="false"/> <!--指定是否生成操作数据库对应的方法 />-->
     </context>
 </generatorConfiguration>

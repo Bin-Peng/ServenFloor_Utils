@@ -16,7 +16,6 @@ import seven.utils.context.RunContext;
 import seven.utils.model.common.AuthRequetHeader;
 import seven.utils.model.common.RunEnvs;
 import seven.utils.model.table.AuthProcessControl;
-import seven.utils.model.table.AuthTrxnLog;
 import seven.utils.service.api.AuthParaService;
 import seven.utils.service.api.AuthRespCodeMappingService;
 import seven.utils.service.api.AuthService;
