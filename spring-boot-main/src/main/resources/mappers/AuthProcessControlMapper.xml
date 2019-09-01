@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="seven.utils.dao.AuthProcessControlMapper" >
+  <resultMap id="BaseResultMap" type="seven.utils.model.table.AuthProcessControl" >
+    <id column="pc_auth_trxn_code" property="pcAuthTrxnCode" jdbcType="VARCHAR" />
+    <id column="pc_step" property="pcStep" jdbcType="INTEGER" />
+    <result column="pc_component_bean" property="pcComponentBean" jdbcType="VARCHAR" />
+    <result column="pc_error_process_type" property="pcErrorProcessType" jdbcType="VARCHAR" />
+    <result column="pc_goto_step" property="pcGotoStep" jdbcType="INTEGER" />
+    <result column="pc_create_time" property="pcCreateTime" jdbcType="TIMESTAMP" />
+    <result column="pc_create_user" property="pcCreateUser" jdbcType="VARCHAR" />
+    <result column="pc_update_time" property="pcUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="pc_update_user" property="pcUpdateUser" jdbcType="VARCHAR" />
+    <result column="pc_version" property="pcVersion" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pc_auth_trxn_code, pc_step, pc_component_bean, pc_error_process_type, pc_goto_step, 
+    pc_create_time, pc_create_user, pc_update_time, pc_update_user, pc_version
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="seven.utils.model.table.AuthProcessControlKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from auth_process_control
+    where pc_auth_trxn_code = #{pcAuthTrxnCode,jdbcType=VARCHAR}
+      and pc_step = #{pcStep,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="seven.utils.model.table.AuthProcessControlKey" >
+    delete from auth_process_control
+    where pc_auth_trxn_code = #{pcAuthTrxnCode,jdbcType=VARCHAR}
+      and pc_step = #{pcStep,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="seven.utils.model.table.AuthProcessControl" >
+    insert into auth_process_control (pc_auth_trxn_code, pc_step, pc_component_bean, 
+      pc_error_process_type, pc_goto_step, pc_create_time, 
+      pc_create_user, pc_update_time, pc_update_user, 
+      pc_version)
+    values (#{pcAuthTrxnCode,jdbcType=VARCHAR}, #{pcStep,jdbcType=INTEGER}, #{pcComponentBean,jdbcType=VARCHAR}, 
+      #{pcErrorProcessType,jdbcType=VARCHAR}, #{pcGotoStep,jdbcType=INTEGER}, #{pcCreateTime,jdbcType=TIMESTAMP}, 
+      #{pcCreateUser,jdbcType=VARCHAR}, #{pcUpdateTime,jdbcType=TIMESTAMP}, #{pcUpdateUser,jdbcType=VARCHAR}, 
+      #{pcVersion,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="seven.utils.model.table.AuthProcessControl" >
+    insert into auth_process_control
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pcAuthTrxnCode != null" >
+        pc_auth_trxn_code,
+      </if>
+      <if test="pcStep != null" >
+        pc_step,
+      </if>
+      <if test="pcComponentBean != null" >
+        pc_component_bean,
+      </if>
+      <if test="pcErrorProcessType != null" >
+        pc_error_process_type,
+      </if>
+      <if test="pcGotoStep != null" >
+        pc_goto_step,
+      </if>
+      <if test="pcCreateTime != null" >
+        pc_create_time,
+      </if>
+      <if test="pcCreateUser != null" >
+        pc_create_user,
+      </if>
+      <if test="pcUpdateTime != null" >
+        pc_update_time,
+      </if>
+      <if test="pcUpdateUser != null" >
+        pc_update_user,
+      </if>
+      <if test="pcVersion != null" >
+        pc_version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pcAuthTrxnCode != null" >
+        #{pcAuthTrxnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pcStep != null" >
+        #{pcStep,jdbcType=INTEGER},
+      </if>
+      <if test="pcComponentBean != null" >
+        #{pcComponentBean,jdbcType=VARCHAR},
+      </if>
+      <if test="pcErrorProcessType != null" >
+        #{pcErrorProcessType,jdbcType=VARCHAR},
+      </if>
+      <if test="pcGotoStep != null" >
+        #{pcGotoStep,jdbcType=INTEGER},
+      </if>
+      <if test="pcCreateTime != null" >
+        #{pcCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pcCreateUser != null" >
+        #{pcCreateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="pcUpdateTime != null" >
+        #{pcUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pcUpdateUser != null" >
+        #{pcUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="pcVersion != null" >
+        #{pcVersion,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="seven.utils.model.table.AuthProcessControl" >
+    update auth_process_control
+    <set >
+      <if test="pcComponentBean != null" >
+        pc_component_bean = #{pcComponentBean,jdbcType=VARCHAR},
+      </if>
+      <if test="pcErrorProcessType != null" >
+        pc_error_process_type = #{pcErrorProcessType,jdbcType=VARCHAR},
+      </if>
+      <if test="pcGotoStep != null" >
+        pc_goto_step = #{pcGotoStep,jdbcType=INTEGER},
+      </if>
+      <if test="pcCreateTime != null" >
+        pc_create_time = #{pcCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pcCreateUser != null" >
+        pc_create_user = #{pcCreateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="pcUpdateTime != null" >
+        pc_update_time = #{pcUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pcUpdateUser != null" >
+        pc_update_user = #{pcUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="pcVersion != null" >
+        pc_version = #{pcVersion,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pc_auth_trxn_code = #{pcAuthTrxnCode,jdbcType=VARCHAR}
+      and pc_step = #{pcStep,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="seven.utils.model.table.AuthProcessControl" >
+    update auth_process_control
+    set pc_component_bean = #{pcComponentBean,jdbcType=VARCHAR},
+      pc_error_process_type = #{pcErrorProcessType,jdbcType=VARCHAR},
+      pc_goto_step = #{pcGotoStep,jdbcType=INTEGER},
+      pc_create_time = #{pcCreateTime,jdbcType=TIMESTAMP},
+      pc_create_user = #{pcCreateUser,jdbcType=VARCHAR},
+      pc_update_time = #{pcUpdateTime,jdbcType=TIMESTAMP},
+      pc_update_user = #{pcUpdateUser,jdbcType=VARCHAR},
+      pc_version = #{pcVersion,jdbcType=INTEGER}
+    where pc_auth_trxn_code = #{pcAuthTrxnCode,jdbcType=VARCHAR}
+      and pc_step = #{pcStep,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectControlListAsc" parameterType="seven.utils.model.table.AuthProcessControlKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from auth_process_control
+    where pc_auth_trxn_code = #{pcAuthTrxnCode,jdbcType=VARCHAR} order by pc_step asc
+  </select>
+</mapper>

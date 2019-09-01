@@ -14,6 +14,7 @@
     <packaging>pom</packaging>
 
     <properties>
+        <java.version>1.8</java.version>
         <edsp-base.version>1.0.5</edsp-base.version>
         <edsp-registry.version>1.0.2</edsp-registry.version>
         <disruptor.version>3.3.0</disruptor.version>
@@ -91,11 +92,11 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-            <plugin>
+          <!--  <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.0</version>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 

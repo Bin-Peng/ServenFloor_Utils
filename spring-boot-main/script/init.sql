@@ -11,4 +11,4 @@ create table  auth_process_control (
   pc_update_user         varchar(30)             comment '更新用户',
   pc_version             int            not null default '1' comment '版本号',
   primary key (pc_auth_trxn_code, pc_step)
-) engine=innodb default charset=utf8mb4 collate=utfmb4_bin comment='授权业务规则控制表' distributed by duplicate(g1);
+) engine=innodb default charset=utf8mb4 collate=utf8mb4_bin comment='授权业务规则控制表' distributed by duplicate(g1);

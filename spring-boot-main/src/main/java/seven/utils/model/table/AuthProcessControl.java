@@ -28,16 +28,39 @@ public class AuthProcessControl extends  AuthProcessControlKey implements Serial
      * 创建时间
      */
     private String pcCreateTime;
+
+    private String pcCreateUser;
     /**
      * 更新时间
      */
-    private String pcUppdateTime;
+    private String pcUpdateTime;
     /**
      * 更新用户
      */
-    private String pcUppdateUser;
+    private String pcUpdateUser;
+    private String pcVersion;
+
+
 
     private static final long serialVersionUID = 1L;
+
+
+    public String getPcVersion() {
+        return pcVersion;
+    }
+
+    public void setPcVersion(String pcVersion) {
+        this.pcVersion = pcVersion;
+    }
+
+    public String getPcCreateUser() {
+        return pcCreateUser;
+    }
+
+    public void setPcCreateUser(String pcCreateUser) {
+        this.pcCreateUser = pcCreateUser;
+    }
+
     public AuthProcessControl() {
     }
 
@@ -81,19 +104,19 @@ public class AuthProcessControl extends  AuthProcessControlKey implements Serial
         this.pcCreateTime = pcCreateTime;
     }
 
-    public String getPcUppdateTime() {
-        return pcUppdateTime;
+    public String getPcUpdateTime() {
+        return pcUpdateTime;
     }
 
-    public void setPcUppdateTime(String pcUppdateTime) {
-        this.pcUppdateTime = pcUppdateTime;
+    public void setPcUpdateTime(String pcUpdateTime) {
+        this.pcUpdateTime = pcUpdateTime;
     }
 
-    public String getPcUppdateUser() {
-        return pcUppdateUser;
+    public String getPcUpdateUser() {
+        return pcUpdateUser;
     }
 
-    public void setPcUppdateUser(String pcUppdateUser) {
-        this.pcUppdateUser = pcUppdateUser;
+    public void setPcUpdateUser(String pcUpdateUser) {
+        this.pcUpdateUser = pcUpdateUser;
     }
 }
