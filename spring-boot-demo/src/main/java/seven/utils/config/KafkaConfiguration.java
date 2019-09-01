@@ -18,8 +18,6 @@ import org.springframework.kafka.support.ProducerListener;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
-import javax.annotation.Resource;
-
 /**
  * Kafka配置类
  * Created by moche_000 on 2019/8/23.
@@ -115,7 +113,7 @@ public class KafkaConfiguration {
      * @return
      */
     @Bean(BYTE_KAFKA_TEMPLATE)
-    public KafkaTemplate<?, ?> byteKafkaTemplate(@Resource(BYTE_KAFKA_PRODUCER_FACTORY) ProducerFactory<Object, Object> kafkaProducerFactory, ProducerListener<Object, Object> kafkaProducerListener) {
+    public KafkaTemplate<?, ?> byteKafkaTemplate(@Qualifier(BYTE_KAFKA_PRODUCER_FACTORY) ProducerFactory<Object, Object> kafkaProducerFactory, ProducerListener<Object, Object> kafkaProducerListener) {
         KafkaTemplate<Object, Object> kafkaTemplate = new KafkaTemplate<Object, Object>(kafkaProducerFactory);
         kafkaTemplate.setProducerListener(kafkaProducerListener);
         kafkaTemplate.setDefaultTopic(this.properties.getTemplate().getDefaultTopic());

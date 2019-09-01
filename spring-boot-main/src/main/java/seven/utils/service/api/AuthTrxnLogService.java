@@ -2,6 +2,7 @@ package seven.utils.service.api;
 
 import seven.utils.model.common.DataArea;
 import seven.utils.model.properties.OriginalTrxnCondition;
+import seven.utils.model.table.AuthTrxnLog;
 
 /**
  * 授权流水处理service

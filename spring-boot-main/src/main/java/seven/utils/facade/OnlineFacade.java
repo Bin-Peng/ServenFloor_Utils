@@ -16,6 +16,7 @@ import seven.utils.context.RunContext;
 import seven.utils.model.common.AuthRequetHeader;
 import seven.utils.model.common.RunEnvs;
 import seven.utils.model.table.AuthProcessControl;
+import seven.utils.model.table.AuthTrxnLog;
 import seven.utils.service.api.AuthParaService;
 import seven.utils.service.api.AuthRespCodeMappingService;
 import seven.utils.service.api.AuthService;
@@ -33,7 +34,7 @@ public class OnlineFacade {
     private static Logger logger = LoggerFactory.getLogger(OnlineFacade.class);
 
     @Autowired
-    private AuthParaService authParaService;
+    private AuthParaService authParaServiceImpl;
 
     @Autowired
     private AuthRespCodeMappingService authRespCodeMappingService;
@@ -45,7 +46,8 @@ public class OnlineFacade {
     public Map<String, Object> process(Map<String, Object> request) throws Throwable{
         //根据交易码，获取授权检查组件，并按照顺序执行
         String authTrxnCode = String.valueOf(request.get(AuthRequetHeader.AUTH_TRXN_CODE));
-        List<AuthProcessControl> authProcessControlList = authParaService.queryAuthProcessControlList(authTrxnCode);
+
+        List<AuthProcessControl> authProcessControlList = authParaServiceImpl.queryAuthProcessControlList(authTrxnCode);
 
         //默认的gotoStep值，要求配置表中的step值都大于等于0
         List<String> authProcessLogs = Lists.newArrayList();

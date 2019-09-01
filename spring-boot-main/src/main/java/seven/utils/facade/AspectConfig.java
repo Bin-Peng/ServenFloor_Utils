@@ -57,7 +57,7 @@ public class AspectConfig {
             //组装响应报文
             result = after();
         }catch (Throwable e){
-            logger.error("授权交易异常");
+            logger.error("授权交易异常",e);
             //组装异常响应报文
             handleException();
         }finally {
