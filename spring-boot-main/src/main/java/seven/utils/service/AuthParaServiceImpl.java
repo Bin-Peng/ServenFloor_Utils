@@ -2,7 +2,7 @@ package seven.utils.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import seven.utils.dao.AuthProcessControlMapper;
 import seven.utils.model.table.AuthProcessControl;
 import seven.utils.model.table.AuthProcessControlKey;
@@ -14,7 +14,7 @@ import java.util.List;
  * @author pengbin
  * Created by moche_000 on 2019/8/23.
  */
-@Component
+@Service
 public class AuthParaServiceImpl implements AuthParaService{
 
     @Autowired

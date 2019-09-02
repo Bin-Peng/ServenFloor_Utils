@@ -7,11 +7,12 @@ import seven.utils.config.netty.TopicProperties;
 
 import java.util.List;
 
+
 /**
  * 读取配置文件
  * 支持yaml  properties
  * 默认读取bootstrap.properties  bootstrap.yml
- * Created by moche_000 on 2019/8/26.
+ * @author pengbin  by moche_000 on 2019/8/26.
  */
 @ConfigurationProperties(prefix = "seven.utils")
 public class SevenProperties {
