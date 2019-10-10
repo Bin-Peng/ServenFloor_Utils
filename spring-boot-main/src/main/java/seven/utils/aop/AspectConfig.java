@@ -1,4 +1,4 @@
-package seven.utils.facade;
+package seven.utils.aop;
 
 import com.google.common.collect.Maps;
 import org.aspectj.lang.ProceedingJoinPoint;

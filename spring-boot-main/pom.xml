@@ -44,6 +44,7 @@
         </dependency>
     </dependencies>
     <build>
+
         <plugins>
             <!--自动生成sql插件-->
             <plugin>

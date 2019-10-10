@@ -1,4 +1,4 @@
-package seven.utils.config;
+package seven.utils.aop;
 
 
 import org.apache.ibatis.cache.CacheKey;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import sun.plugin2.main.server.ResultHandler;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
@@ -22,7 +23,7 @@ import java.util.concurrent.Executor;
  * @author pengbin
  */
 @Intercepts(value = {
-        @Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class}),
+//        @Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class}),
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class}),
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class})
 })
@@ -35,13 +36,23 @@ public class MybatisSqlInterceptor implements Interceptor {
 
 
     /**
-     * 有rest方法被构造时，自动触发调用
+     * 该对象实例被构造时，自动触发调用做预初始化
+     * 也可以在bean注解后面添加initMethod 参数指定init()方法
      */
     @PostConstruct
     private void init() {
         logger.info("已开启生产sql统计耗时拦截器");
     }
 
+
+    /**
+     * 该对象实例被销毁时，自动触发销毁资源
+     * 也可以在bean注解后面添加destroyMethod 参数指定destroy()方法
+     */
+    @PreDestroy
+    private void destroy(){
+        logger.info("已销毁生产sql统计耗时拦截器");
+    }
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {

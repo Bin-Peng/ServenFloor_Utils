@@ -34,20 +34,20 @@ public class OnlineFacade {
     private static Logger logger = LoggerFactory.getLogger(OnlineFacade.class);
 
     @Autowired
-    private AuthParaService authParaServiceImpl;
+    private AuthParaService service;
 
     @Autowired
-    private AuthRespCodeMappingService authRespCodeMappingService;
+    private AuthRespCodeMappingService respCodeMappingService;
 
     @Autowired
-    private AuthTrxnLogService authTrxnLogService;
+    private AuthTrxnLogService logService;
 
     @Transactional(rollbackFor = Exception.class)
     public Map<String, Object> process(Map<String, Object> request) throws Throwable{
         //根据交易码，获取授权检查组件，并按照顺序执行
         String authTrxnCode = String.valueOf(request.get(AuthRequetHeader.AUTH_TRXN_CODE));
 
-        List<AuthProcessControl> authProcessControlList = authParaServiceImpl.queryAuthProcessControlList(authTrxnCode);
+        List<AuthProcessControl> authProcessControlList = service.queryAuthProcessControlList(authTrxnCode);
 
         //默认的gotoStep值，要求配置表中的step值都大于等于0
         List<String> authProcessLogs = Lists.newArrayList();
@@ -126,10 +126,10 @@ public class OnlineFacade {
         }
         //设置渠道响应码
         runEnvs.setChannelRetCode(
-                authRespCodeMappingService.responseCodeTransform(runEnvs.getRetCode(), runEnvs.getChannelId())
+                respCodeMappingService.responseCodeTransform(runEnvs.getRetCode(), runEnvs.getChannelId())
         );
         //独立事务登记授权流水
-        authTrxnLogService.registerTrxnLogInNewTransaction(RunContext.getDataArea());
+        logService.registerTrxnLogInNewTransaction(RunContext.getDataArea());
     }
 
     /**
@@ -139,10 +139,10 @@ public class OnlineFacade {
         RunEnvs runEnvs = RunContext.getRunEnvs();
         //设置渠道响应码
         runEnvs.setChannelRetCode(
-                authRespCodeMappingService.responseCodeTransform(runEnvs.getRetCode(), runEnvs.getChannelId())
+                respCodeMappingService.responseCodeTransform(runEnvs.getRetCode(), runEnvs.getChannelId())
         );
         //登记授权流水
-        AuthTrxnLog authTrxnLog = authTrxnLogService.registerTrxnLog(RunContext.getDataArea());
+        AuthTrxnLog authTrxnLog = logService.registerTrxnLog(RunContext.getDataArea());
         //登记预授权流水
     }
 }

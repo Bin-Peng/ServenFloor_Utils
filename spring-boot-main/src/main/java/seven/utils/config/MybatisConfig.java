@@ -28,6 +28,7 @@ public class MybatisConfig {
      * 数据源配置
      * @return 连接池数据源配置
      */
+    @SuppressWarnings("ContextJavaBeanUnresolvedMethodsInspection")
     @Bean(destroyMethod = "close")
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource(){

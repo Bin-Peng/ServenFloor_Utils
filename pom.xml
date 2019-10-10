@@ -25,6 +25,11 @@
         <module>spring-boot-demo</module>
         <!--组件式开发脚手架-->
         <module>spring-boot-main</module>
+        <!--spring cloud 组件样例-->
+        <module>spring-cloud-demo</module>
+        <!--spring cloud 注册中心-->
+        <module>spring-cloud-eureka</module>
+        <!--<module>spring-cloud-alibaba</module>-->
     </modules>
 
     <dependencies>
@@ -46,7 +51,12 @@
             <artifactId>disruptor</artifactId>
             <version>${disruptor.version}</version>
         </dependency>
-
+        <!--log 补充依赖-->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
 
         <!--工具类-->
         <dependency>
@@ -76,10 +86,50 @@
             <artifactId>spring-kafka</artifactId>
             <version>1.1.7.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+
+        <!--Swagger2 API说明-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.7.0</version>
+        </dependency>
     </dependencies>
 
+    <dependencyManagement>
 
+        <dependencies>
+            <!--1.5 对应Spring cloud Edgware版本 spring boot 1.5.X-->
+            <!--2.1 对应Spring cloud Greenwich版本 spring boot 2.1.X-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>1.5.0.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <!--支持spring 1.5.x的版本-->
+                <version>Edgware.SR6</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
@@ -87,16 +137,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-          <!--  <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.0</version>
-            </plugin>-->
         </plugins>
     </build>
 

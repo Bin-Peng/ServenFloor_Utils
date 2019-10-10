@@ -11,24 +11,25 @@ set -e
 
 # 转换路径保证在什么目录都可以执行
 # convert relative path to absolute path 
-bin='dirname "$0"'
-APP_HOME='cd "$bin"/..;pwd'
-PG_NAME='basename "$0"'
+bin=`dirname "$0"`
+APP_HOME=$(cd "$bin"/..;pwd)
+PG_NAME=`basename $0`
 
 
 # set java options
-JAVA_OPTS="${JAVA_OPTS} -Xms1024m -Xmx1024m"
+JAVA_OPTS="${JAVA_OPTS} -Xms218m -Xmx218m"
 
 #设置profiles_active
 # export config center address
-if [ -z "${SPRINT_PROFILES_ACTIVE}" ];then
-   echo "Error:SPRINT_PROFILES_ACTIVE is not set,must be dev,test or prod."
+
+if [ -z "${SPRING_PROFILES_ACTIVE}" ];then
+   echo "Error:SPRING_PROFILES_ACTIVE is not set,must be dev,test or prod."
    exit 1
 fi
 
 #自动加载环境变量文件
 #read environment parameter and export , for easy debug usage
-CONF_ENV_FILE="$APP_HOME/bin/config-${SPRINT_PROFILES_ACTIVE}.env"
+CONF_ENV_FILE="$APP_HOME/bin/config-${SPRING_PROFILES_ACTIVE}.env"
 source "$CONF_ENV_FILE"
 
 function print_usage(){
@@ -57,6 +58,7 @@ function get_mainjar()
     for jar in "$APP_HOME"/*.jar
     do
             RPG_NAME=${jar}
+            echo "RPG_NAME = $RPG_NAME"
     done
 }
 
@@ -94,6 +96,7 @@ function load_classpath()
 
 function load_java()
 {
+    echo "waiting load_java ..."
     if [[ ${DEBUG} == 'false' ]]; then
             get_mainjar
     else 
@@ -145,7 +148,7 @@ function load_java()
 function start(){
       
         load_java
-	RUNNING='ps -ef|grep $RPG_NAME|grep -v grep|awk '{print $2}''
+	RUNNING=`ps -ef|grep $RPG_NAME|grep -v grep|awk '{print $2}'`
 	if [ -n "$RUNNING" ]; then
 	       echo "$RPG_NAME is running! $RUNNING"
 	else 
@@ -159,7 +162,7 @@ function start(){
 	      exec nohup $JAVA_HOME/bin/java $JAVA_OPTS -jar $RPG_NAME --spring.config.location=$CONF_PATH --logging.config=$CONF_PATH/log4j2-$SPRING_PROFILES_ACTIVE.xml  > /dev/null 2>&1 &
 	    fi
 	sleep 2s
-	        if [ $? -eq 0]; then
+	        if [ $? -eq 0 ]; then
 		 echo "$RPG_NAME start success"
 		else
 		 echo "$RPG_NAME start failed"
@@ -191,14 +194,14 @@ function stop(){
 
 
 
-ARGS='getopt -o d -lserver.port: -- "$@"'
+#ARGS=`getopt -o d -lserver.port: -- "$@"`
 
 if [ $? != 0 ]; then
     print_usage
 	exit 1;
 fi
 
-eval set -- "$ARGS"
+#eval set -- "$ARGS"
 
 DEBUG='false'
 
@@ -209,7 +212,7 @@ while true; do
 	   SERVER_PORT="$2";
 	   shift 2;;
 	   --) shift;;
-	   start) start; break;;
+	   start)start; break;;
 	   status) status; break;;
 	   stop) stop; break;;
 	   *) echo "Error: unexpected option $1..."

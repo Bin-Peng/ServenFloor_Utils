@@ -5,6 +5,12 @@ import seven.utils.model.table.AuthProcessControlKey;
 
 import java.util.List;
 
+
+/**
+ * Dao类   提供直接操作数据的各类sql方法
+ * @author pengbin
+ *
+ */
 public interface AuthProcessControlMapper {
     int deleteByPrimaryKey(AuthProcessControlKey key);
 

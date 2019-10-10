@@ -2,6 +2,7 @@ package seven.utils.config;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
@@ -10,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
  * RestTemplate的配置类，包括普通的RestTemplate、定制的RestTemplate以及@LoadBalance负载均衡的RestTemplate
  * Created by moche_000 on 2019/8/23.
  */
-
+@Configuration
 public class RestTemplateConfig {
 
 

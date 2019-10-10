@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * @author pengbin
  * Created by moche_000 on 2019/8/23.
+ * 业务类  在DAO类之上封装方法，对查询之后的数据进行处理
  */
 @Service
 public class AuthParaServiceImpl implements AuthParaService{
