@@ -11,7 +11,7 @@ public class AuthProcessControlKey implements Serializable {
     /**
      * 授权交易代码
      */
-    private String pcAuthTrxnCode;
+    private String tradeCode;
 
     /**
      * 执行步骤
@@ -20,12 +20,12 @@ public class AuthProcessControlKey implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public String getPcAuthTrxnCode() {
-        return pcAuthTrxnCode;
+    public String getTradeCode() {
+        return tradeCode;
     }
 
-    public void setPcAuthTrxnCode(String pcAuthTrxnCode) {
-        this.pcAuthTrxnCode = pcAuthTrxnCode;
+    public void setTradeCode(String tradeCode) {
+        this.tradeCode = tradeCode;
     }
 
     public Integer getPcStep() {

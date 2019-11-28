@@ -15,7 +15,7 @@ import java.util.List;
  * Created by moche_000 on 2019/8/23.
  * 业务类  在DAO类之上封装方法，对查询之后的数据进行处理
  */
-@Service
+//@Service
 public class AuthParaServiceImpl implements AuthParaService{
 
     @Autowired
@@ -31,7 +31,7 @@ public class AuthParaServiceImpl implements AuthParaService{
     @Cacheable(value = "authProcessControlCache")
     public List<AuthProcessControl> queryAuthProcessControlList(String authTrxnCode) {
         AuthProcessControlKey key = new AuthProcessControlKey();
-        key.setPcAuthTrxnCode(authTrxnCode);
+        key.setTradeCode(authTrxnCode);
         return authProcessControlMapper.selectControlListAsc(key);
     }
 }

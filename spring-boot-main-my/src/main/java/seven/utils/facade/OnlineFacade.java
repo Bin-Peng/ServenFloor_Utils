@@ -22,6 +22,7 @@ import seven.utils.service.api.AuthRespCodeMappingService;
 import seven.utils.service.api.AuthService;
 import seven.utils.service.api.AuthTrxnLogService;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ import java.util.Map;
 public class OnlineFacade {
     private static Logger logger = LoggerFactory.getLogger(OnlineFacade.class);
 
-    @Autowired
+    @Resource(name = "AuthParaLocal")
     private AuthParaService service;
 
     @Autowired
@@ -43,9 +44,9 @@ public class OnlineFacade {
     private AuthTrxnLogService logService;
 
     @Transactional(rollbackFor = Exception.class)
-    public Map<String, Object> process(Map<String, Object> request) throws Throwable{
+    public Map<String, Object> process(String tradeCode) throws Throwable{
         //根据交易码，获取授权检查组件，并按照顺序执行
-        String authTrxnCode = String.valueOf(request.get(AuthRequetHeader.AUTH_TRXN_CODE));
+        String authTrxnCode =  tradeCode;
 
         //单交易下，手动定义交易流程各个组件，即启动时new AuthProcessControl，然后按照顺序进行组装，组件名称提供默认，步骤需要可配置。
         List<AuthProcessControl> authProcessControlList = service.queryAuthProcessControlList(authTrxnCode);
@@ -63,7 +64,7 @@ public class OnlineFacade {
             long start = System.currentTimeMillis();
             try {
                 //执行授权检查组件
-                AuthService authService = AppContext.getBean(authProcessControl.getPcComponentBean(), AuthService.class);
+                AuthService authService = authProcessControl.getAuthService();
                 //执行组件
                 authService.execute(authProcessControl);
                 //统计组件耗时

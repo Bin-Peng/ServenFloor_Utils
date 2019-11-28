@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import seven.utils.facade.OnlineFacade;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -23,9 +24,10 @@ public class MainController {
 
 
     @GetMapping(path = "/spring-boot-main/auth")
-    public Map<String, Object> startAuth(@RequestParam Map<String, Object> params, @RequestBody Map<String, Object> request) throws Throwable {
+    public Map<String, Object> startAuth(@RequestParam Map<String, Object> params, @RequestBody Map<String, Object> request, HttpServletRequest httpServletRequest) throws Throwable {
+
         logger.info("startAuth 方法调用,执行facade,参数：{}", params.values().toString());
-        return facade.process(request);
+        return facade.process(httpServletRequest.getRequestURI());
     }
 
 

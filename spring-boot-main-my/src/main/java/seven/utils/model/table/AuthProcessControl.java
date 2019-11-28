@@ -1,11 +1,19 @@
 package seven.utils.model.table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import seven.utils.service.api.AuthService;
+
 import java.io.Serializable;
 
 /**
  * Created by moche_000 on 2019/8/16.
  */
-public class AuthProcessControl extends  AuthProcessControlKey implements Serializable{
+public class AuthProcessControl extends AuthProcessControlKey implements Serializable {
+    /**
+     * 授权组件bean
+     */
+    private AuthService authService;
+
     /**
      * 授权组件bean
      */
@@ -24,44 +32,20 @@ public class AuthProcessControl extends  AuthProcessControlKey implements Serial
      * 异常跳转步骤
      */
     private Integer pcGotoStep;
-    /**
-     * 创建时间
-     */
-    private String pcCreateTime;
-
-    private String pcCreateUser;
-    /**
-     * 更新时间
-     */
-    private String pcUpdateTime;
-    /**
-     * 更新用户
-     */
-    private String pcUpdateUser;
-    private String pcVersion;
-
 
 
     private static final long serialVersionUID = 1L;
 
 
-    public String getPcVersion() {
-        return pcVersion;
-    }
-
-    public void setPcVersion(String pcVersion) {
-        this.pcVersion = pcVersion;
-    }
-
-    public String getPcCreateUser() {
-        return pcCreateUser;
-    }
-
-    public void setPcCreateUser(String pcCreateUser) {
-        this.pcCreateUser = pcCreateUser;
-    }
-
     public AuthProcessControl() {
+    }
+
+    public AuthService getAuthService() {
+        return authService;
+    }
+
+    public void setAuthService(AuthService authService) {
+        this.authService = authService;
     }
 
     public String getPcComponentBean() {
@@ -94,29 +78,5 @@ public class AuthProcessControl extends  AuthProcessControlKey implements Serial
 
     public Integer getPcGotoStep() {
         return pcGotoStep;
-    }
-
-    public String getPcCreateTime() {
-        return pcCreateTime;
-    }
-
-    public void setPcCreateTime(String pcCreateTime) {
-        this.pcCreateTime = pcCreateTime;
-    }
-
-    public String getPcUpdateTime() {
-        return pcUpdateTime;
-    }
-
-    public void setPcUpdateTime(String pcUpdateTime) {
-        this.pcUpdateTime = pcUpdateTime;
-    }
-
-    public String getPcUpdateUser() {
-        return pcUpdateUser;
-    }
-
-    public void setPcUpdateUser(String pcUpdateUser) {
-        this.pcUpdateUser = pcUpdateUser;
     }
 }
