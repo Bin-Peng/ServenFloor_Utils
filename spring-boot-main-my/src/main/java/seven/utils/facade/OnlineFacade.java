@@ -1,5 +1,8 @@
 package seven.utils.facade;
 
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -21,6 +24,7 @@ import seven.utils.service.api.AuthParaService;
 import seven.utils.service.api.AuthRespCodeMappingService;
 import seven.utils.service.api.AuthService;
 import seven.utils.service.api.AuthTrxnLogService;
+import springfox.documentation.spring.web.json.Json;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -65,8 +69,9 @@ public class OnlineFacade {
             try {
                 //执行授权检查组件
                 AuthService authService = authProcessControl.getAuthService();
+                Object requestData = JSONObject.parseObject(RunContext.getDataArea().getOutput().toString(),authService.getRequestClass());
                 //执行组件
-                authService.execute(authProcessControl);
+                authService.execute(requestData,authProcessControl);
                 //统计组件耗时
                 authProcessLogs.add(authProcessControl.getPcComponentBean() + ":" + (System.currentTimeMillis() - start) + "ms");
             } catch (Exception e) {

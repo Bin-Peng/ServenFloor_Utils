@@ -1,4 +1,4 @@
-package seven.utils.service.trade;
+package seven.utils.init;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -29,7 +29,7 @@ public abstract class AbstractTrade implements ApplicationRunner {
     /**
      * 组装并初始化交易流程
      */
-    abstract void initTrade();
+    protected abstract void initTrade();
 
     /**
      * 顺序添加交易流程组件
@@ -44,6 +44,6 @@ public abstract class AbstractTrade implements ApplicationRunner {
      * 定义交易码名称，与http接口保持一致
      * @return
      */
-    abstract String getTradeCode();
+    protected abstract String getTradeCode();
 
 }

@@ -1,9 +1,8 @@
 package seven.utils.service.trade;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+import seven.utils.init.AbstractTrade;
 import seven.utils.model.table.AuthProcessControl;
 import seven.utils.service.sampleimpl.AuthServiceImpl1;
 
@@ -13,6 +12,7 @@ import seven.utils.service.sampleimpl.AuthServiceImpl1;
  * 需求：
  * 1. 开发者只需要关注交易流程的排序
  * 2. 交易流程分交易组件以及流程组件，流程组件定义step顺序，流程名称
+ * 3. 每一个流程组件，需要定义它的入口参数类
  * 3. 屏蔽交易最后的装载过程。
  * date: 2019/11/28 20:08 <br/>
  *
@@ -24,13 +24,14 @@ public class SampleTrade1 extends AbstractTrade {
 
     private static final String tradeCode = "/spring-boot-main/auth";
 
+
     @Autowired
     private AuthServiceImpl1 authServiceImpl1;
     @Autowired
     private AuthServiceImpl1 authServiceImpl2;
 
     @Override
-    void initTrade() {
+    protected void initTrade() {
         AuthProcessControl processControl1 = new AuthProcessControl();
         processControl1.setPcStep(1);
         processControl1.setPcComponentName("SampleTrade1处理步骤1");
@@ -42,10 +43,13 @@ public class SampleTrade1 extends AbstractTrade {
         processControl2.setPcComponentName("SampleTrade1处理步骤2");
         processControl2.setAuthService(authServiceImpl2);
         addProcessControl(processControl2);
+
+
+
     }
 
     @Override
-    String getTradeCode() {
+    protected String getTradeCode() {
         return tradeCode;
     }
 }
