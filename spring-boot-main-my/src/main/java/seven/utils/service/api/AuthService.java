@@ -12,4 +12,7 @@ public interface AuthService {
      * @param authProcessControl 授权控制规则
      */
         void execute(AuthProcessControl authProcessControl);
+
+
+        void exceptionHandle();
 }

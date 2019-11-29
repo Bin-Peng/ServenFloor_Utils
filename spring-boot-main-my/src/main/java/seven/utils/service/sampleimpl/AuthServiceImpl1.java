@@ -13,4 +13,9 @@ public class AuthServiceImpl1 implements AuthService{
     public void execute(AuthProcessControl authProcessControl) {
         logger.info("AuthServiceImpl1 执行");
     }
+
+    @Override
+    public void exceptionHandle() {
+
+    }
 }
