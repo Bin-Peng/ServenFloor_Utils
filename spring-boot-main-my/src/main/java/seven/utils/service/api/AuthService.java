@@ -6,14 +6,13 @@ import seven.utils.model.table.AuthProcessControl;
  * 组件service接口类
  * Created by moche_000 on 2019/8/16.
  */
-public interface AuthService<T> {
+public interface AuthService {
     /**
      * 授权控制入口
      *
-     * @param requestDTO         请求参数模型
      * @param authProcessControl 授权控制规则
      */
-    void execute(T requestDTO, AuthProcessControl authProcessControl);
+    void execute(AuthProcessControl authProcessControl);
 
 
     /**
@@ -21,10 +20,4 @@ public interface AuthService<T> {
      */
     void exceptionHandle();
 
-    /**
-     * 返回请求参数类型
-     *
-     * @return
-     */
-    Class<T> getRequestClass();
 }

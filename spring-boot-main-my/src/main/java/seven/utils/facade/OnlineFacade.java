@@ -69,9 +69,8 @@ public class OnlineFacade {
             try {
                 //执行授权检查组件
                 AuthService authService = authProcessControl.getAuthService();
-                Object requestData = JSONObject.parseObject(RunContext.getDataArea().getOutput().toString(),authService.getRequestClass());
                 //执行组件
-                authService.execute(requestData,authProcessControl);
+                authService.execute(authProcessControl);
                 //统计组件耗时
                 authProcessLogs.add(authProcessControl.getPcComponentBean() + ":" + (System.currentTimeMillis() - start) + "ms");
             } catch (Exception e) {
