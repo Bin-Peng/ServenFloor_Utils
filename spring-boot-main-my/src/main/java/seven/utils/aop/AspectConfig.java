@@ -29,38 +29,38 @@ public class AspectConfig {
 
     /**
      * 需要处理的切面
-     * @see seven.utils.facade.OnlineFacade#process(Map)
-     * @param request
+     *
+     * @see seven.utils.facade.OnlineFacade#process(Map, Map, String)
      */
-    @Pointcut("execution(public * seven.utils.facade.OnlineFacade.process(..)) && args(request) ")
-    private void onlineFacadePointcut(Map<String, Object> request) {
+    @Pointcut("execution(public * seven.utils.facade.OnlineFacade.process(..)) && args(params,requestBody, tradeCode) ")
+    private void onlineFacadePointcut(Map<String, Object> params, Map<String, Object> requestBody, String tradeCode) {
     }
 
     /**
      * 切面处理方法
+     *
      * @param proceedingJoinPoint
-     * @param request
      * @return
      */
-    @Around("onlineFacadePointcut(request)")
+    @Around("onlineFacadePointcut(params,requestBody, tradeCode)")
     public Map<String, Object> onlineFacadeAroundProcessing(ProceedingJoinPoint proceedingJoinPoint,
-                                                                    Map<String, Object> request){
+                                                            Map<String, Object> params, Map<String, Object> requestBody, String tradeCode) {
 
         //定义返回报文
         Map<String, Object> result = new HashMap<String, Object>();
-        try{
+        try {
 
             //初始化，配置信息赋值
-            before(request);
+            before(params, requestBody);
             //组件逻辑处理
             proceedingJoinPoint.proceed();
             //组装响应报文
             result = after();
-        }catch (Throwable e){
-            logger.error("授权交易异常",e);
+        } catch (Throwable e) {
+            logger.error("授权交易异常", e);
             //组装异常响应报文
             handleException();
-        }finally {
+        } finally {
             //线程任务完成之后显示调用destroy方法，避免init方法异常时线程上下文未清理
             RunContext.destroyContext();
         }
@@ -69,20 +69,27 @@ public class AspectConfig {
 
     /**
      * 主卡号查询、授权交易码配置信息赋值
-     * @param request
      */
-    private void before(Map<String, Object> request){
-        logger.info("收到请求报文:[{}]" , request);
+    private void before(Map<String, Object> params, Map<String, Object> requestBody) {
+        logger.info("收到请求报文:[{}]", requestBody);
         //初始化授权信息
-        RunContext.initContext(request);
+        if (requestBody == null) {
+            requestBody = new HashMap<>();
+        }
+        if (params == null) {
+            params = new HashMap<>();
+        }
+        requestBody.putAll(params);
+        RunContext.initContext(requestBody);
     }
 
 
     /**
      * 组装返回报文
+     *
      * @return
      */
-    private Map<String, Object> after(){
+    private Map<String, Object> after() {
         Map<String, Object> response = Maps.newHashMap();
         //组装返回报文公共字段
         RunEnvs runEnvs = RunContext.getRunEnvs();
@@ -96,9 +103,10 @@ public class AspectConfig {
 
     /**
      * 组装返回报文
+     *
      * @return
      */
-    private Map<String, Object> handleException(){
+    private Map<String, Object> handleException() {
         Map<String, Object> response = Maps.newHashMap();
         //组装返回报文公共字段
         RunEnvs runEnvs = RunContext.getRunEnvs();

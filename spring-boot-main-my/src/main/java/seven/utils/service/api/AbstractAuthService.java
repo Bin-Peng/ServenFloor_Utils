@@ -4,16 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import seven.utils.context.RunContext;
-import seven.utils.dto.AuthServiceImpl1DTO;
-import seven.utils.dto.AuthServiceImpl2DTO;
 import seven.utils.model.table.AuthProcessControl;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,7 +47,7 @@ public abstract class AbstractAuthService<T, O> implements AuthService {
      * @param no    需要获取第几个泛型，第一个为 0
      * @return 反格式化后的对象，失败则为 null
      */
-    public  <T> T fromJson(String json, Class<?> clazz, int no) {
+    public <T> T fromJson(String json, Class<?> clazz, int no) {
         Type entityType = ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments()[no];
         TypeReference typeReference = new TypeReference<Object>() {
         };
