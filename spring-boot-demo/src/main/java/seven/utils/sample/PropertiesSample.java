@@ -14,4 +14,7 @@ public class PropertiesSample {
     private SevenProperties properties;
 
 
+    public void st(){
+        properties.getTopic().getSema();
+    }
 }

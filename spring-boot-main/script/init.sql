@@ -5,6 +5,7 @@ create table  auth_process_control (
   pc_component_bean      varchar(100) not null comment '授权组件bean',
   pc_error_process_type  varchar(2)   not null comment '授权组价名称',
   pc_goto_step           int                     comment '异常跳转步骤', -- 对应到当前配置的执行步骤阶段
+
   pc_create_time         timestamp(3)  not null default current_timestamp(3) comment '创建时间',
   pc_create_user         varchar(30)   not null default '' comment '创建用户',
   pc_update_time         timestamp(3)  not null default current_timestamp(3) on update current_timestamp(3) comment '更新时间',

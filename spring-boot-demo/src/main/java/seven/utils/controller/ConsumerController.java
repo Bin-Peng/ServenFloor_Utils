@@ -15,9 +15,9 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class ConsumerController {
 
-    //注入负载均衡的RestTemplate
-    @Autowired
-    private RestTemplate loadBalance;
+//    //注入负载均衡的RestTemplate
+//    @Autowired
+//    private RestTemplate loadBalance;
 
     //注入原生的RestTemplate
     @Autowired
@@ -28,8 +28,8 @@ public class ConsumerController {
     @GetMapping("/consumer/lb")
     public String addLoadBalanced(@ApiParam(name = "a", value = "url上带参", required = true) @RequestParam Integer a, @ApiParam(name = "b", value = "url带参b", required = true) @RequestParam Integer b){
         StringBuilder requestUrl = new StringBuilder();
-        requestUrl.append("http://spring-boot-demo/spring-boot-demo/provider?a=").append(a).append("&b=").append(b);
-        String result = loadBalance.getForEntity(requestUrl.toString(), String.class).getBody();
+        requestUrl.append("http://localhost:8080/provider?a=").append(a).append("&b=").append(b);
+        String result = restTemplate.getForEntity(requestUrl.toString(), String.class).getBody();
         return result;
     }
 

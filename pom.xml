@@ -25,6 +25,7 @@
         <module>spring-boot-demo</module>
         <!--组件式开发脚手架-->
         <module>spring-boot-main</module>
+        <module>spring-boot-main-my</module>
         <!--spring cloud 组件样例-->
         <module>spring-cloud-demo</module>
         <!--spring cloud 注册中心-->

@@ -37,19 +37,19 @@ public class RestTemplateConfig {
      * RestTemplate加上@LoadBalance注解启动负载均衡
      * @return
      */
-    @Bean
-    @LoadBalanced
-    @Primary  //强制使用该公共配置，防止被其他jar引入的配置覆盖
-    RestTemplate loadBalance() {
-        HttpComponentsClientHttpRequestFactory httpRequestFactory = new HttpComponentsClientHttpRequestFactory();
-        //请求超时时间
-        httpRequestFactory.setConnectionRequestTimeout(1000);
-        //读取超时时间
-        httpRequestFactory.setReadTimeout(1000);
-        //连接超时时间
-        httpRequestFactory.setConnectTimeout(1000);
-        return new RestTemplate(httpRequestFactory);
-    }
+//    @Bean
+//    @LoadBalanced
+//    @Primary  //强制使用该公共配置，防止被其他jar引入的配置覆盖
+//    RestTemplate loadBalance() {
+//        HttpComponentsClientHttpRequestFactory httpRequestFactory = new HttpComponentsClientHttpRequestFactory();
+//        //请求超时时间
+//        httpRequestFactory.setConnectionRequestTimeout(1000);
+//        //读取超时时间
+//        httpRequestFactory.setReadTimeout(1000);
+//        //连接超时时间
+//        httpRequestFactory.setConnectTimeout(1000);
+//        return new RestTemplate(httpRequestFactory);
+//    }
 
 
     /**
